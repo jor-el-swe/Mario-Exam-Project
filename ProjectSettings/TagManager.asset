@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - flag
   - trap
+  - Wall
   layers:
   - Default
   - TransparentFX

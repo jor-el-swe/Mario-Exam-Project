@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float maxXVelocity = 6f;
     public float maxFallVelocity = -10f;
     public float doubleJumpMultiplier = 0.5f;
+    public float wallJumpStrength = 600f;
+    public Transform[] walls;
     
     public bool PlayerHasWon => playerHasWon;
     public bool PlayerHasStarted => playerHasStarted;
@@ -119,7 +121,30 @@ public class PlayerController : MonoBehaviour
                         canDoubleJump = false;
                         _playerRB.AddForce(Vector2.up * (jumpStrength * doubleJumpMultiplier));
                     }
-                    _playerRB.AddForce(Vector2.up * jumpStrength);
+                    else
+                    {
+                        _playerRB.AddForce(Vector2.up * jumpStrength);  
+                    }
+                }
+                else
+                {
+                    //try wall jump
+                    foreach(var wall in walls)
+                    {
+                        if (Mathf.Abs(_playerRB.position.x - wall.position.x) >= 1.2f ||
+                            
+                            Mathf.Abs(_playerRB.position.y - wall.position.y) > 5f) continue;
+
+                        if (wall.position.x > _playerRB.position.x)
+                        {
+                            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.left * (wallJumpStrength * 0.5f));
+                        }
+                        else
+                        {
+                            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * wallJumpStrength);
+                        }
+                        
+                    }
                 }
             }
     }
@@ -138,8 +163,9 @@ public class PlayerController : MonoBehaviour
             playerHasWon = true;
             playerHasStarted = false;
         }
-    }
+        
 
+    }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("trap"))
