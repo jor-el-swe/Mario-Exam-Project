@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour
                 {
                     currentState = GameStates.titleScreen;
                     uiController.ShowTitleScreen();
+                    playerController.ResetGame();
                 }
                 break;
         }

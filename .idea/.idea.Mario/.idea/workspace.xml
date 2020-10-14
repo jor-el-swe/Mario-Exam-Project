@@ -20,8 +20,8 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
       </list>
     </option>
   </component>
@@ -67,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602661494313</updated>
-      <workItem from="1602661501025" duration="25522000" />
+      <workItem from="1602661501025" duration="26433000" />
     </task>
     <servers />
   </component>
@@ -153,26 +153,13 @@
           <line>78</line>
           <properties documentPath="C:\GameDevelopment\Mario\Assets\Scripts\PlayerController.cs" initialLine="77">
             <startOffsets>
-              <option value="1956" />
+              <option value="1975" />
             </startOffsets>
             <endOffsets>
-              <option value="1977" />
+              <option value="1996" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs</url>
-          <line>60</line>
-          <properties documentPath="C:\GameDevelopment\Mario\Assets\Scripts\PlayerController.cs" initialLine="59">
-            <startOffsets>
-              <option value="1511" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1535" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

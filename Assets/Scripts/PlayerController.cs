@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         playerhasReset = true;
         playerHasStarted = false;
         playerhasDied = false;
+        playerHasWon = false;
     }
     
     
@@ -52,8 +53,6 @@ public class PlayerController : MonoBehaviour
         if (playerHasStarted && !playerhasDied)
         {
             MovePlayer();
-            playerhasReset = false;
-            playerHasWon = false;
         }
         else
         {
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.R))
             { 
-                ResetGame();
+                playerhasReset = true;
             }
         }
     }
