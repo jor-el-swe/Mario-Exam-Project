@@ -112,6 +112,12 @@ public class PlayerController : MonoBehaviour
             playerHasWon = true;
             playerHasStarted = false;
         }
+        
+        if (collision.gameObject.CompareTag("trap"))
+        {
+            playerhasDied = true;
+            playerHasStarted = false;
+        }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
