@@ -37,50 +37,39 @@ using UnityEngine;public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            _playerRB.AddForce(Vector2.left * playerSpeed );
-            
-        }
-        
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            _playerRB.AddForce(Vector2.right * playerSpeed );
-        }
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            if (jumpIsPossible)
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                Debug.Log("jumping");
-                _playerRB.AddForce(Vector2.up * jumpStrength);
+                _playerRB.AddForce(Vector2.left * playerSpeed );
+            }
+        
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                _playerRB.AddForce(Vector2.right * playerSpeed);
             }
 
-        }
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            {  if (jumpIsPossible)
+                _playerRB.AddForce(Vector2.up * jumpStrength);
+            }  
         
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
+        //this is the straight up from ground/platform jump
         if ( (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform")) && 
-             (collision.otherCollider.name == "RFoot") || (collision.otherCollider.name == "LFoot"))
+             collision.otherCollider.name == "FeetCollider")
         {
             jumpIsPossible = true;
         }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        Debug.Log("exit collision");
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Platform"))
         {
-            //if disable immediately, the jump will be too low
-            Invoke("DisableJump", jumpDisableDelay);
+            jumpIsPossible = false;
         }
     }
 
-    private void DisableJump()
-    {
-        jumpIsPossible = false;
-    }
 }
