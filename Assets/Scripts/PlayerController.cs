@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 2f;
     public float jumpStrength = 600f;
     public float maxXVelocity = 6f;
-    public float maxFallVelocity = -10f;
-    public float doubleJumpMultiplier = 0.5f;
+    public float maxFallVelocity = -10.5f;
+    public float doubleJumpMultiplier = 0.4f;
     public float wallJumpStrength = 600f;
     public Transform[] walls;
     
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private int noLives = 3;
     private float trapTimer = 0.0f;
     private bool timerStarted = true;
+    private float lastKnownFallVelocity = 0;
     
     
     //gameplay logic
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        lastKnownFallVelocity = _playerRB.velocity.y;
         //needed for OnTriggerStay2D() to work properly, whilst standing still in a trap
         _playerRB.WakeUp();
         
@@ -92,10 +94,10 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-            //check if we have fallen too far
-            if (!playerIsOnGround && playerHasStarted)
+            //check if we have fallen too far beyond ground level
+            if (playerHasStarted)
             {
-                if (_playerRB.velocity.y < maxFallVelocity)
+                if (_playerRB.position.y < -9)
                 {
                     playerhasDied = true;
                     return;
@@ -141,14 +143,20 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * wallJumpStrength);
+                            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * (wallJumpStrength * 0.5f));
                         }
                         
                     }
                 }
             }
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!( lastKnownFallVelocity < maxFallVelocity)) return;
+        playerhasDied = true; 
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if ( (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform")) && 
@@ -188,7 +196,6 @@ public class PlayerController : MonoBehaviour
             }
             
             uiController.SetLifeText(noLives);
-
         }
     }
 

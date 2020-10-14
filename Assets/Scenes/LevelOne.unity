@@ -1378,8 +1378,8 @@ MonoBehaviour:
   playerSpeed: 2
   jumpStrength: 600
   maxXVelocity: 8
-  maxFallVelocity: -10
-  doubleJumpMultiplier: 0.5
+  maxFallVelocity: -10.5
+  doubleJumpMultiplier: 0.4
   wallJumpStrength: 600
   walls:
   - {fileID: 8899637005174697247}
