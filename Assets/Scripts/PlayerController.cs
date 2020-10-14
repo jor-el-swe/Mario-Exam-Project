@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("References")]
+    [Header("References")] 
+    public  UIController uiController;
 
     [Header("Game Behaviour")] 
     public float playerSpeed = 2f;
@@ -21,6 +23,9 @@ public class PlayerController : MonoBehaviour
     
     //player mechanics
     private bool playerIsOnGround = false;
+    private int noLives = 3;
+    private float trapTimer = 0.0f;
+    private bool timerStarted = true;
     
     
     //gameplay logic
@@ -37,6 +42,8 @@ public class PlayerController : MonoBehaviour
         playerHasStarted = false;
         playerhasDied = false;
         playerHasWon = false;
+        noLives = 3;
+        uiController.SetLifeText(noLives);
     }
     
     
@@ -44,12 +51,18 @@ public class PlayerController : MonoBehaviour
     {
         _spawnPosition = transform.position;
         _playerRB = GetComponent<Rigidbody2D>();
+        uiController.SetLifeText(noLives);
         
     }
 
     // Update is called once per frame
     private void Update()
     {
+        //needed for OnTriggerStay2D() to work properly, whilst standing still in a trap
+        _playerRB.WakeUp();
+        
+        trapTimer += Time.deltaTime;
+        
         if (playerHasStarted && !playerhasDied)
         {
             MovePlayer();
@@ -112,13 +125,34 @@ public class PlayerController : MonoBehaviour
             playerHasWon = true;
             playerHasStarted = false;
         }
-        
-        if (collision.gameObject.CompareTag("trap"))
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("trap"))
         {
-            playerhasDied = true;
-            playerHasStarted = false;
+            if (!timerStarted)
+            {
+                timerStarted = true;
+                trapTimer = 0;
+            }
+            else if (trapTimer >= 2)
+            {
+                noLives--;
+                timerStarted = false;
+            }
+            
+            if (noLives <= 0)
+            {
+                playerhasDied = true;
+                playerHasStarted = false;
+            }
+            
+            uiController.SetLifeText(noLives);
+
         }
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Platform"))

@@ -19,9 +19,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UIController.cs" />
       </list>
     </option>
   </component>
@@ -67,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602661494313</updated>
-      <workItem from="1602661501025" duration="27086000" />
+      <workItem from="1602661501025" duration="29344000" />
     </task>
     <servers />
   </component>
@@ -144,24 +144,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602702295427" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs</url>
-          <line>78</line>
-          <properties documentPath="C:\GameDevelopment\Mario\Assets\Scripts\PlayerController.cs" initialLine="77">
-            <startOffsets>
-              <option value="1975" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1996" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
