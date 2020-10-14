@@ -17,14 +17,16 @@ public class CameraController : MonoBehaviour
         if ((int)playerTransform.position.y != (int)transform.position.y)
         {
             newPosition.y = Mathf.Lerp(transform.position.y, playerTransform.position.y, Time.deltaTime);
+           
+            //cannot see below ground
             newPosition.y = Mathf.Clamp(newPosition.y ,0 , newPosition.y );
+            
             transform.position = newPosition;
         }
         
         //horizontal movement
         if ((int)playerTransform.position.x != (int)transform.position.x)
         {
-            Debug.Log("moving on x");
             newPosition.x = Mathf.Lerp(transform.position.x, playerTransform.position.x, Time.deltaTime);
             transform.position = newPosition;
         }

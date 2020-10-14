@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 2f;
     public float jumpStrength = 600f;
     public float maxXVelocity = 6f;
-   
+    public static bool PlayerHasWon => playerHasWon;
+
+    public static bool PlayerHasStarted => playerHasStarted;
+
     //player components
     private Vector3 _spawnPosition;
     private Rigidbody2D _playerRB;
@@ -16,10 +19,21 @@ public class PlayerController : MonoBehaviour
     //player mechanics
     private bool jumpIsPossible = false;
     
+    
+    //gameplay logic
+    private static bool playerHasWon = false;
+    private static bool playerHasStarted = false;
+    
     void Start()
     {
         _spawnPosition = transform.position;
         _playerRB = GetComponent<Rigidbody2D>();
+        while (!Input.GetKey(KeyCode.P))
+        {
+            
+        }
+
+        playerHasStarted = true;
     }
 
     // Update is called once per frame
@@ -55,6 +69,12 @@ public class PlayerController : MonoBehaviour
              collision.otherCollider.name == "FeetCollider")
         {
             jumpIsPossible = true;
+        }
+
+        if (collision.gameObject.CompareTag("flag"))
+        {
+            Debug.Log("winner!");
+            playerHasWon = true;
         }
     }
     private void OnCollisionExit2D(Collision2D other)
