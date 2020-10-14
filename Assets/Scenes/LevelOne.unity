@@ -1271,6 +1271,7 @@ MonoBehaviour:
   jumpStrength: 600
   maxXVelocity: 8
   maxFallVelocity: -10
+  doubleJumpMultiplier: 0.5
 --- !u!4 &1339353171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1712558666762581321, guid: 9e0f643b6b81fb04b9cfd9d716b2d9eb,
@@ -1831,12 +1832,12 @@ MonoBehaviour:
   m_text: 'uh oh!
 
 
-    you failed to find the flag
+    you failed to find the flag alive
 
-    this is the end for you
+    this is the end for
+    you
 
-    as
-    an epic adventurer!
+    as an epic adventurer!
 
 
 

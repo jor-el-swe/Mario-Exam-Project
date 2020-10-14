@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength = 600f;
     public float maxXVelocity = 6f;
     public float maxFallVelocity = -10f;
+    public float doubleJumpMultiplier = 0.5f;
     
     public bool PlayerHasWon => playerHasWon;
     public bool PlayerHasStarted => playerHasStarted;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool playerHasStarted = false;
     private bool playerhasReset = true;
     private bool playerhasDied = false;
+    private bool canDoubleJump = true;
     
     public void ResetGame()
     {
@@ -109,19 +111,26 @@ public class PlayerController : MonoBehaviour
             }
             
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-            {  if (playerIsOnGround)
-                _playerRB.AddForce(Vector2.up * jumpStrength);
-            }  
-        
+            {
+                if (playerIsOnGround || canDoubleJump)
+                {
+                    if (!playerIsOnGround)
+                    {
+                        canDoubleJump = false;
+                        _playerRB.AddForce(Vector2.up * (jumpStrength * doubleJumpMultiplier));
+                    }
+                    _playerRB.AddForce(Vector2.up * jumpStrength);
+                }
+            }
     }
     
     private void OnCollisionStay2D(Collision2D collision)
     {
-        //this is the straight up from ground/platform jump
         if ( (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform")) && 
              collision.otherCollider.name == "FeetCollider")
         {
             playerIsOnGround = true;
+            canDoubleJump = true;
         }
 
         if (collision.gameObject.CompareTag("flag"))
