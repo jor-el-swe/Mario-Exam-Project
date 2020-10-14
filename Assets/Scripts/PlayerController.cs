@@ -8,27 +8,34 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 2f;
     public float jumpStrength = 600f;
     public float maxXVelocity = 6f;
-    public static bool PlayerHasWon => playerHasWon;
-    public static bool PlayerHasStarted => playerHasStarted;
-
-    public static bool PlayerhasReset => playerhasReset;
+    public float maxFallVelocity = -10f;
+    
+    public bool PlayerHasWon => playerHasWon;
+    public bool PlayerHasStarted => playerHasStarted;
+    public bool PlayerhasReset => playerhasReset;
+    public bool PlayerhasDied => playerhasDied;
 
     //player components
     private Vector3 _spawnPosition;
     private Rigidbody2D _playerRB;
     
     //player mechanics
-    private bool jumpIsPossible = false;
+    private bool playerIsOnGround = false;
     
     
     //gameplay logic
-    private static bool playerHasWon = false;
-    private static bool playerHasStarted = false;
-    private static bool playerhasReset = true;
+    private bool playerHasWon = false;
+    private bool playerHasStarted = false;
+    private bool playerhasReset = true;
+    private bool playerhasDied = false;
     
     public void ResetGame()
     {
+        _playerRB.velocity = Vector2.zero;
         _playerRB.position = _spawnPosition;
+        playerhasReset = true;
+        playerHasStarted = false;
+        playerhasDied = false;
     }
     
     
@@ -42,7 +49,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (playerHasStarted)
+        if (playerHasStarted && !playerhasDied)
         {
             MovePlayer();
             playerhasReset = false;
@@ -57,14 +64,23 @@ public class PlayerController : MonoBehaviour
             }
 
             if (Input.GetKey(KeyCode.R))
-            {
-                playerhasReset = true;
+            { 
+                ResetGame();
             }
         }
     }
 
     private void MovePlayer()
     {
+            //check if we have fallen too far
+            if (!playerIsOnGround && playerHasStarted)
+            {
+                if (_playerRB.velocity.y < maxFallVelocity)
+                {
+                    playerhasDied = true;
+                    return;
+                }
+            }
 
             if ( (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(_playerRB.velocity.x) < maxXVelocity)
             {
@@ -77,24 +93,23 @@ public class PlayerController : MonoBehaviour
             }
             
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-            {  if (jumpIsPossible)
+            {  if (playerIsOnGround)
                 _playerRB.AddForce(Vector2.up * jumpStrength);
             }  
         
     }
-
+    
     private void OnCollisionStay2D(Collision2D collision)
     {
         //this is the straight up from ground/platform jump
         if ( (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform")) && 
              collision.otherCollider.name == "FeetCollider")
         {
-            jumpIsPossible = true;
+            playerIsOnGround = true;
         }
 
         if (collision.gameObject.CompareTag("flag"))
         {
-            Debug.Log("winner!");
             playerHasWon = true;
             playerHasStarted = false;
         }
@@ -103,7 +118,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Platform"))
         {
-            jumpIsPossible = false;
+            playerIsOnGround = false;
         }
     }
 }

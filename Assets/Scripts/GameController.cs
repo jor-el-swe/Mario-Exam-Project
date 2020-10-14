@@ -14,7 +14,8 @@ public class GameController : MonoBehaviour
     {
         titleScreen,
         playing,
-        wonGame
+        wonGame, 
+        failedGame
     }
     private GameStates currentState;
    
@@ -22,7 +23,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         currentState = GameStates.titleScreen;
-        uiController.showTitleScreen();
+        uiController.ShowTitleScreen();
     }
 
     // Update is called once per frame
@@ -31,28 +32,42 @@ public class GameController : MonoBehaviour
         switch (currentState)
         {
             case GameStates.titleScreen:
-                if (PlayerController.PlayerHasStarted)
+                if (playerController.PlayerHasStarted)
                 {
                     currentState = GameStates.playing;
-                    uiController.showGamePlay();
+                    uiController.ShowGamePlay();
                 }
 
                 break;
 
             case GameStates.playing:
-                if (PlayerController.PlayerHasWon)
+                if (playerController.PlayerHasWon)
                 {
                     currentState = GameStates.wonGame;
-                    uiController.showWinningText();
+                    uiController.ShowWinningText();
+                }
+
+                if (playerController.PlayerhasDied)
+                {
+                    currentState = GameStates.failedGame;
+                    uiController.ShowFailingText();
                 }
                 break;
 
             case GameStates.wonGame:
-                if (PlayerController.PlayerhasReset)
+                if (playerController.PlayerhasReset)
                 {
                     currentState = GameStates.titleScreen;
-                    uiController.showTitleScreen();
+                    uiController.ShowTitleScreen();
                     playerController.ResetGame();
+                }
+                break;
+            
+            case GameStates.failedGame:
+                if (playerController.PlayerhasReset)
+                {
+                    currentState = GameStates.titleScreen;
+                    uiController.ShowTitleScreen();
                 }
                 break;
         }

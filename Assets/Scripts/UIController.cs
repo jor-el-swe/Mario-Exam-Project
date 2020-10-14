@@ -1,27 +1,38 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+
 
 public class UIController : MonoBehaviour
 {
     public TMP_Text welcomeText;
     public TMP_Text finishText;
-
-    public void showTitleScreen()
+    public TMP_Text failingText;
+    
+    public void ShowTitleScreen()
     {
         finishText.enabled = false;
         welcomeText.enabled = true;
+        failingText.enabled = false;
     }
 
-    public void showGamePlay()
+    public void ShowGamePlay()
     {
         finishText.enabled = false;
         welcomeText.enabled = false;
+        failingText.enabled = false;
     }
     
-    public void showWinningText()
+    public void ShowWinningText()
     {
         finishText.enabled = true;
         welcomeText.enabled = false;
+        failingText.enabled = false;
+    }
+    
+    public void ShowFailingText()
+    {
+        finishText.enabled = false;
+        welcomeText.enabled = false;
+        failingText.enabled = true;
     }
 }

@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
         {
             newPosition.y = Mathf.Lerp(transform.position.y, playerTransform.position.y, Time.deltaTime);
            
-            //cannot see below ground
+            //cannot see below ground area
             newPosition.y = Mathf.Clamp(newPosition.y ,0 , newPosition.y );
             
             transform.position = newPosition;
