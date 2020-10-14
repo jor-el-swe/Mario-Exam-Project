@@ -1,21 +1,14 @@
-﻿
-
-#define DEBUG
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;public class PlayerController : MonoBehaviour
+﻿using System;
+using UnityEngine;
+public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    public Transform playerTransform;
-
 
     [Header("Game Behaviour")] 
     public float playerSpeed = 2f;
-    public float jumpStrength = 30f;
-    public float jumpDisableDelay = 0.02f;
-    
+    public float jumpStrength = 600f;
+    public float maxXVelocity = 6f;
+   
     //player components
     private Vector3 _spawnPosition;
     private Rigidbody2D _playerRB;
@@ -25,12 +18,12 @@ using UnityEngine;public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        _spawnPosition = playerTransform.transform.position;
-        _playerRB = playerTransform.GetComponent<Rigidbody2D>();
+        _spawnPosition = transform.position;
+        _playerRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         MovePlayer();
     }
@@ -38,16 +31,16 @@ using UnityEngine;public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
 
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if ( (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(_playerRB.velocity.x) < maxXVelocity)
             {
                 _playerRB.AddForce(Vector2.left * playerSpeed );
             }
         
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            if ( (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&  _playerRB.velocity.x < maxXVelocity)
             {
                 _playerRB.AddForce(Vector2.right * playerSpeed);
             }
-
+            
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {  if (jumpIsPossible)
                 _playerRB.AddForce(Vector2.up * jumpStrength);
