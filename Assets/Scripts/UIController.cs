@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
     
     public void showWinningText()
     {
-        finishText.enabled = false;
+        finishText.enabled = true;
         welcomeText.enabled = false;
     }
 }

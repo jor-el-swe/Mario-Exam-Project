@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength = 600f;
     public float maxXVelocity = 6f;
     public static bool PlayerHasWon => playerHasWon;
-
     public static bool PlayerHasStarted => playerHasStarted;
 
     //player components
@@ -28,18 +27,23 @@ public class PlayerController : MonoBehaviour
     {
         _spawnPosition = transform.position;
         _playerRB = GetComponent<Rigidbody2D>();
-        while (!Input.GetKey(KeyCode.P))
-        {
-            
-        }
-
-        playerHasStarted = true;
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
-        MovePlayer();
+        if (playerHasStarted)
+        {
+            MovePlayer();
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.P))
+            {
+                playerHasStarted = true;
+            }
+        }
     }
 
     private void MovePlayer()
