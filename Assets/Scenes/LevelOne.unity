@@ -502,7 +502,13 @@ MonoBehaviour:
     and secured your reputation
 
     as
-    an epic adventurer!'
+    an epic adventurer!
+
+
+
+
+
+    press ''R'' to reset game'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -877,6 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiController: {fileID: 2033878174}
+  playerController: {fileID: 1339353170}
 --- !u!1001 &1212346625
 PrefabInstance:
   m_ObjectHideFlags: 0

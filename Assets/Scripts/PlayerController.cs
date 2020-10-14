@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public static bool PlayerHasWon => playerHasWon;
     public static bool PlayerHasStarted => playerHasStarted;
 
+    public static bool PlayerhasReset => playerhasReset;
+
     //player components
     private Vector3 _spawnPosition;
     private Rigidbody2D _playerRB;
@@ -22,6 +24,13 @@ public class PlayerController : MonoBehaviour
     //gameplay logic
     private static bool playerHasWon = false;
     private static bool playerHasStarted = false;
+    private static bool playerhasReset = true;
+    
+    public void ResetGame()
+    {
+        _playerRB.position = _spawnPosition;
+    }
+    
     
     void Start()
     {
@@ -36,12 +45,20 @@ public class PlayerController : MonoBehaviour
         if (playerHasStarted)
         {
             MovePlayer();
+            playerhasReset = false;
+            playerHasWon = false;
         }
         else
         {
-            if (Input.GetKey(KeyCode.P))
+            if (Input.GetKey(KeyCode.P) && playerhasReset)
             {
                 playerHasStarted = true;
+                playerhasReset = false;
+            }
+
+            if (Input.GetKey(KeyCode.R))
+            {
+                playerhasReset = true;
             }
         }
     }
@@ -79,6 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("winner!");
             playerHasWon = true;
+            playerHasStarted = false;
         }
     }
     private void OnCollisionExit2D(Collision2D other)
@@ -88,5 +106,4 @@ public class PlayerController : MonoBehaviour
             jumpIsPossible = false;
         }
     }
-
 }

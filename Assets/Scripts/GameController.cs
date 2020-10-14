@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     
     [Header("References")]
     public UIController uiController;
+    public PlayerController playerController;
     
     
     enum GameStates
@@ -47,9 +48,11 @@ public class GameController : MonoBehaviour
                 break;
 
             case GameStates.wonGame:
-                if (false)
+                if (PlayerController.PlayerhasReset)
                 {
-                    //restart game
+                    currentState = GameStates.titleScreen;
+                    uiController.showTitleScreen();
+                    playerController.ResetGame();
                 }
                 break;
         }
