@@ -8,7 +8,8 @@ public class UIController : MonoBehaviour
     public TMP_Text finishText;
     public TMP_Text failingText;
     public TMP_Text lifeText;
-
+    public TMP_Text timerText;
+    
     public void SetLifeText(int noLives)
     {
         lifeText.text = null;
@@ -18,12 +19,19 @@ public class UIController : MonoBehaviour
         }
         
     }
+
+    public void SetTimertext(int secondsLeft)
+    {
+        timerText.text = "Time left: " + secondsLeft;
+    }
+    
     public void ShowTitleScreen()
     {
         finishText.enabled = false;
         welcomeText.enabled = true;
         failingText.enabled = false;
         lifeText.enabled = false;
+        timerText.enabled = false;
     }
 
     public void ShowGamePlay()
@@ -32,6 +40,7 @@ public class UIController : MonoBehaviour
         welcomeText.enabled = false;
         failingText.enabled = false;
         lifeText.enabled = true;
+        timerText.enabled = true;
     }
     
     public void ShowWinningText()
@@ -40,6 +49,7 @@ public class UIController : MonoBehaviour
         welcomeText.enabled = false;
         failingText.enabled = false;
         lifeText.enabled = false;
+        timerText.enabled = true;
     }
     
     public void ShowFailingText()
@@ -48,5 +58,6 @@ public class UIController : MonoBehaviour
         welcomeText.enabled = false;
         failingText.enabled = true;
         lifeText.enabled = false;
+        timerText.enabled = true;
     }
 }

@@ -15,7 +15,11 @@ public class PlayerController : MonoBehaviour
     public bool PlayerHasWon => playerHasWon;
     public bool PlayerHasStarted => playerHasStarted;
     public bool PlayerhasReset => playerhasReset;
-    public bool PlayerhasDied => playerhasDied;
+    public bool PlayerhasDied
+    {
+        get => playerhasDied;
+        set => playerhasDied = value;
+    }
 
     //player components
     private Vector3 _spawnPosition;

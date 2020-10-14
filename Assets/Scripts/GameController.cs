@@ -8,7 +8,9 @@ public class GameController : MonoBehaviour
     [Header("References")]
     public UIController uiController;
     public PlayerController playerController;
+    public int maxGameTime = 60;
     
+    private float gameTimer = 0f;
     
     enum GameStates
     {
@@ -32,6 +34,7 @@ public class GameController : MonoBehaviour
         switch (currentState)
         {
             case GameStates.titleScreen:
+                gameTimer = 0;
                 if (playerController.PlayerHasStarted)
                 {
                     currentState = GameStates.playing;
@@ -41,6 +44,18 @@ public class GameController : MonoBehaviour
                 break;
 
             case GameStates.playing:
+                gameTimer += Time.deltaTime;
+                var timeLeft = maxGameTime - (int) gameTimer;
+                if (timeLeft <= 0)
+                {
+                    timeLeft = 0;
+                    playerController.PlayerhasDied = true;
+                    currentState = GameStates.failedGame;
+                    uiController.ShowFailingText();
+                }
+                
+                uiController.SetTimertext(timeLeft);
+                
                 if (playerController.PlayerHasWon)
                 {
                     currentState = GameStates.wonGame;
@@ -54,7 +69,7 @@ public class GameController : MonoBehaviour
                 }
                 break;
 
-            case GameStates.wonGame:
+                case GameStates.wonGame:
                 if (playerController.PlayerhasReset)
                 {
                     currentState = GameStates.titleScreen;
