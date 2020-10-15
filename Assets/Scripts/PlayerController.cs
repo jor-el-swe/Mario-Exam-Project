@@ -38,10 +38,10 @@ public class PlayerController : MonoBehaviour
     
     
     //gameplay logic
-    private bool playerHasWon = false;
-    private bool playerHasStarted = false;
+    private bool playerHasWon;
+    private bool playerHasStarted;
     private bool playerhasReset = true;
-    private bool playerhasDied = false;
+    private bool playerhasDied;
     private bool canDoubleJump = true;
     
     public void ResetGame()
