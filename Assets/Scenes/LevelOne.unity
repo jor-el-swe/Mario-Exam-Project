@@ -1490,16 +1490,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiController: {fileID: 2033878174}
+  walls:
+  - {fileID: 8899637005174697247}
+  - {fileID: 2018972411}
+  - {fileID: 1321360638}
   playerSpeed: 2
   jumpStrength: 600
   maxXVelocity: 8
   maxFallVelocity: -10.5
   doubleJumpMultiplier: 0.4
   wallJumpStrength: 600
-  walls:
-  - {fileID: 8899637005174697247}
-  - {fileID: 2018972411}
-  - {fileID: 1321360638}
 --- !u!4 &1339353171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1712558666762581321, guid: 9e0f643b6b81fb04b9cfd9d716b2d9eb,
@@ -1874,6 +1874,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1995168454}
     m_Modifications:
+    - target: {fileID: 2114847611041480793, guid: 80860019f64036344841fea146e864d4,
+        type: 3}
+      propertyPath: enemyMovementSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5837890682375948608, guid: 80860019f64036344841fea146e864d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3031,7 +3036,7 @@ PrefabInstance:
     - target: {fileID: 5837890682375948608, guid: 80860019f64036344841fea146e864d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.11
+      value: -24.04
       objectReference: {fileID: 0}
     - target: {fileID: 5837890682375948608, guid: 80860019f64036344841fea146e864d4,
         type: 3}

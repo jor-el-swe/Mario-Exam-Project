@@ -6,6 +6,7 @@ public class Enemy : Trap
 {
     [Header("Enemy Behaviour")] 
     public float enemyMovementSpeed = 2f;
+    public float maxBoost = 2;
 
 
     private Rigidbody2D enemyRB;
@@ -30,8 +31,7 @@ public class Enemy : Trap
 
     private void AIMovementPattern()
     {
-
-        float stoppingBoost = 1;
+        var stoppingBoost = 1f;
         var platformLength = enemyPlatform.localScale.x;
         var deltaDistance = enemyRB.position.x - enemyPlatform.position.x;
         
@@ -48,22 +48,22 @@ public class Enemy : Trap
 
         if (Math.Sign(direction) != Math.Sign(enemyRB.velocity.x))
         {
-            stoppingBoost = 3;
+            stoppingBoost = maxBoost;
         }
         else
         {
-            stoppingBoost = 1;
+            stoppingBoost = 1f;
         }
-    
 
-        enemyRB.AddForce(new Vector2(enemyMovementSpeed * direction* stoppingBoost, 0));
-        
- 
+        enemyRB.AddForce(new Vector2(enemyMovementSpeed * direction * stoppingBoost, 0));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Platform"))
+        if (other.CompareTag("Platform"))
+        {            
             enemyPlatform = other.gameObject.GetComponent<Transform>();
+        }
+
     }
 }
