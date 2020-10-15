@@ -6,9 +6,11 @@ public class GameController : MonoBehaviour
     [Header("References")]
     public UIController uiController;
     public PlayerController playerController;
-    public int maxGameTime = 60;
+    public AudioHandler audioHandler;
     
+    public int maxGameTime = 60;
     private float gameTimer = 0f;
+    private int currentLevel = 1;
     
     enum GameStates
     {
@@ -32,7 +34,11 @@ public class GameController : MonoBehaviour
         switch (currentState)
         {
             case GameStates.titleScreen:
+                
+                audioHandler.PlaySong(currentLevel);
+                
                 gameTimer = 0;
+                
                 if (playerController.PlayerHasStarted)
                 {
                     currentState = GameStates.playing;
@@ -58,12 +64,14 @@ public class GameController : MonoBehaviour
                 {
                     currentState = GameStates.wonGame;
                     uiController.ShowWinningText();
+                    audioHandler.FadeOutMusic(currentLevel);
                 }
 
                 if (playerController.PlayerhasDied)
                 {
                     currentState = GameStates.failedGame;
                     uiController.ShowFailingText();
+                    audioHandler.FadeOutMusic(currentLevel);
                 }
                 break;
 
@@ -73,6 +81,8 @@ public class GameController : MonoBehaviour
                     currentState = GameStates.titleScreen;
                     uiController.ShowTitleScreen();
                     playerController.ResetGame();
+                    audioHandler.FadeInMusic(currentLevel);
+
                 }
                 break;
             
@@ -82,6 +92,7 @@ public class GameController : MonoBehaviour
                     currentState = GameStates.titleScreen;
                     uiController.ShowTitleScreen();
                     playerController.ResetGame();
+                    audioHandler.FadeInMusic(currentLevel);
                 }
                 break;
         }

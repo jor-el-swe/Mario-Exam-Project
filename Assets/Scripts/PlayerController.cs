@@ -149,8 +149,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!( lastKnownFallVelocity < maxFallVelocity)) return;
-        playerhasDied = true; 
+
+        if (!(lastKnownFallVelocity < maxFallVelocity)) return;
+        
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Platform"))
+        {
+            playerhasDied = true;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
