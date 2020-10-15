@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : Trap
 {
     [Header("Enemy Behaviour")] 
-    public float enemyMovementSpeed = 2f;
-    public float maxBoost = 2;
+    public float enemyMovementSpeed = 1.5f;
+    public float maxBoost = 1.2f;
 
 
     private Rigidbody2D enemyRB;

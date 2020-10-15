@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game Behaviour")] 
     public float playerSpeed = 2f;
     public float jumpStrength = 600f;
-    public float maxXVelocity = 6f;
+    public float maxXVelocity = 8f;
     public float maxFallVelocity = -10.5f;
     public float doubleJumpMultiplier = 0.4f;
     public float wallJumpStrength = 600f;
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
         
         if (playerHasStarted && !playerhasDied)
         {
-            MovePlayer();
+            PrepareMovePlayer();
         }
         else
         {
@@ -89,9 +90,10 @@ public class PlayerController : MonoBehaviour
                 playerhasReset = true;
             }
         }
+        
     }
-
-    private void MovePlayer()
+    
+    private void PrepareMovePlayer()
     {
             //check if we have fallen too far beyond ground level
             if (playerHasStarted)
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
             if ( (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(_playerRB.velocity.x) < maxXVelocity)
             {
-                _playerRB.AddForce(Vector2.left * playerSpeed );
+                _playerRB.AddForce(Vector2.left * (playerSpeed * Time.deltaTime));
                 playerAnimator.enabled = true;
             }
             else if ( (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&  _playerRB.velocity.x < maxXVelocity)
