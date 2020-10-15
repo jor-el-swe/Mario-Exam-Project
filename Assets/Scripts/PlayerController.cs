@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")] 
     public  UIController uiController;
     public Transform[] walls;
+    public Animator playerAnimator;
     
     [Header("Game Behaviour")] 
     public float playerSpeed = 2f;
@@ -59,7 +60,9 @@ public class PlayerController : MonoBehaviour
         _spawnPosition = transform.position;
         _playerRB = GetComponent<Rigidbody2D>();
         uiController.SetLifeText(noLives);
-        
+
+        playerAnimator.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -103,11 +106,21 @@ public class PlayerController : MonoBehaviour
             if ( (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(_playerRB.velocity.x) < maxXVelocity)
             {
                 _playerRB.AddForce(Vector2.left * playerSpeed );
+                playerAnimator.enabled = true;
             }
-        
-            if ( (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&  _playerRB.velocity.x < maxXVelocity)
+            else if ( (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&  _playerRB.velocity.x < maxXVelocity)
             {
                 _playerRB.AddForce(Vector2.right * playerSpeed);
+                playerAnimator.enabled = true;
+            }
+            else
+            {
+                playerAnimator.enabled = false;
+            }
+
+            if (Input.GetKey(KeyCode.F12))
+            {
+                ActivateEasterEgg();
             }
             
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
@@ -145,6 +158,20 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+    }
+
+    private void ActivateEasterEgg()
+    {
+        Debug.Log("easter egg found!");
+        
+        MeshRenderer [] playerMeshes = _playerRB.gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach (var mesh in playerMeshes)
+        {
+            mesh.enabled = false;
+        }
+
+        playerAnimator.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        playerAnimator.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
