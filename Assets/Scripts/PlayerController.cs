@@ -5,7 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")] 
     public  UIController uiController;
-
+    public Transform[] walls;
+    
     [Header("Game Behaviour")] 
     public float playerSpeed = 2f;
     public float jumpStrength = 600f;
@@ -13,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public float maxFallVelocity = -10.5f;
     public float doubleJumpMultiplier = 0.4f;
     public float wallJumpStrength = 600f;
-    public Transform[] walls;
     
     public bool PlayerHasWon => playerHasWon;
     public bool PlayerHasStarted => playerHasStarted;

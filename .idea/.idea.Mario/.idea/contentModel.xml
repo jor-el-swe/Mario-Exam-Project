@@ -6,6 +6,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="CameraController.cs" t="Include" />
+          <e p="Enemy.cs" t="Include" />
           <e p="GameController.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="Trap.cs" t="Include" />

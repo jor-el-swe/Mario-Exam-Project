@@ -24,7 +24,7 @@ public class Trap : MonoBehaviour
                 return false;
         }
 
-        private void Update()
+        protected void Update()
         { 
                 trapTimer += Time.deltaTime;
         }
