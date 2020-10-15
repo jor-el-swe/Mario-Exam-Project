@@ -197,8 +197,7 @@ public class PlayerController : MonoBehaviour
 
     private void ActivateEasterEgg(bool toggle)
     {
-        Debug.Log("easter egg found!");
-        
+       
         MeshRenderer [] playerMeshes = _playerRB.gameObject.GetComponentsInChildren<MeshRenderer>();
         foreach (var mesh in playerMeshes)
         {
