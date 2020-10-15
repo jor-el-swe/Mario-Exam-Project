@@ -120,7 +120,12 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.F12))
             {
-                ActivateEasterEgg();
+                ActivateEasterEgg(true);
+            }
+
+            if (Input.GetKey(KeyCode.F11))
+            {
+                ActivateEasterEgg(false);
             }
             
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
@@ -160,18 +165,20 @@ public class PlayerController : MonoBehaviour
             }
     }
 
-    private void ActivateEasterEgg()
+    private void ActivateEasterEgg(bool toggle)
     {
         Debug.Log("easter egg found!");
         
         MeshRenderer [] playerMeshes = _playerRB.gameObject.GetComponentsInChildren<MeshRenderer>();
         foreach (var mesh in playerMeshes)
         {
-            mesh.enabled = false;
+            if(mesh.gameObject.name !="FeetCollider")
+                mesh.enabled = !toggle;
         }
 
-        playerAnimator.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
-        playerAnimator.enabled = true;
+        playerAnimator.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = toggle;
+        playerAnimator.enabled = toggle;
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
