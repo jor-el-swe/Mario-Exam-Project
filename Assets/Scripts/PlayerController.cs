@@ -31,8 +31,6 @@ public class PlayerController : MonoBehaviour
     //player mechanics
     private bool playerIsOnGround = false;
     private int noLives = 3;
-    private float trapTimer = 0.0f;
-    private bool timerStarted = true;
     private float lastKnownFallVelocity = 0;
     
     
@@ -70,8 +68,6 @@ public class PlayerController : MonoBehaviour
         lastKnownFallVelocity = _playerRB.velocity.y;
         //needed for OnTriggerStay2D() to work properly, whilst standing still in a trap
         _playerRB.WakeUp();
-        
-        trapTimer += Time.deltaTime;
         
         if (playerHasStarted && !playerhasDied)
         {
@@ -178,15 +174,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("trap"))
         {
-            if (!timerStarted)
-            {
-                timerStarted = true;
-                trapTimer = 0;
-            }
-            else if (trapTimer >= 2)
+            if (other.GetComponent<Trap>().IsTrapActive())
             {
                 noLives--;
-                timerStarted = false;
+                uiController.SetLifeText(noLives);
             }
             
             if (noLives <= 0)
@@ -194,8 +185,6 @@ public class PlayerController : MonoBehaviour
                 playerhasDied = true;
                 playerHasStarted = false;
             }
-            
-            uiController.SetLifeText(noLives);
         }
     }
 
