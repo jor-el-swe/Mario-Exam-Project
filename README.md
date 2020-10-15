@@ -3,6 +3,6 @@
 
 credits: 
 
-The project uses the 2D Basic Platformer Pack by OArielG
+The project uses the 2D Basic Platformer Pack by OArielG for background image and grass.
 
-Flag created in Piskel by Joel Ring :)
+Flag, traps and enemies created in Piskel by Joel Ring :)
