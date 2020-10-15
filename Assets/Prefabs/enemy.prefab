@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629e6a25565d1a546b34b62ba2e4cb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMovementSpeed: 1.5
-  maxBoost: 1.2
+  enemyMovementSpeed: 100
+  maxBoost: 1.5
 --- !u!50 &5361063106434624489
 Rigidbody2D:
   serializedVersion: 4

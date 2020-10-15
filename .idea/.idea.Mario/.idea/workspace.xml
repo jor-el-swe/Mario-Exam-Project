@@ -26,6 +26,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovements.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       </list>
     </option>
@@ -42,6 +43,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -83,7 +85,7 @@
       <workItem from="1602661501025" duration="36737000" />
       <workItem from="1602746386554" duration="17778000" />
       <workItem from="1602769894876" duration="46000" />
-      <workItem from="1602772353921" duration="1455000" />
+      <workItem from="1602772353921" duration="7132000" />
     </task>
     <servers />
   </component>
@@ -160,5 +162,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602713900703" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1602778891329">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602778891329" />
   </component>
 </project>

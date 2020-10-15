@@ -257,7 +257,7 @@ PrefabInstance:
     - target: {fileID: 2114847611041480793, guid: 80860019f64036344841fea146e864d4,
         type: 3}
       propertyPath: enemyMovementSpeed
-      value: 2
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5837890682375948608, guid: 80860019f64036344841fea146e864d4,
         type: 3}
@@ -1549,12 +1549,12 @@ MonoBehaviour:
   - {fileID: 2018972411}
   - {fileID: 1321360638}
   playerAnimator: {fileID: 1840568106}
-  playerSpeed: 2
-  jumpStrength: 600
+  playerSpeed: 10
+  jumpStrength: 300
   maxXVelocity: 8
   maxFallVelocity: -10.5
   doubleJumpMultiplier: 0.4
-  wallJumpStrength: 600
+  wallJumpStrength: 250
 --- !u!4 &1339353171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1712558666762581321, guid: 9e0f643b6b81fb04b9cfd9d716b2d9eb,
@@ -1952,7 +1952,7 @@ PrefabInstance:
     - target: {fileID: 2114847611041480793, guid: 80860019f64036344841fea146e864d4,
         type: 3}
       propertyPath: enemyMovementSpeed
-      value: 1.5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5837890682375948608, guid: 80860019f64036344841fea146e864d4,
         type: 3}
@@ -2936,6 +2936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429854637515678351, guid: 9e0f643b6b81fb04b9cfd9d716b2d9eb,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4457059337173491948, guid: 9e0f643b6b81fb04b9cfd9d716b2d9eb,
         type: 3}

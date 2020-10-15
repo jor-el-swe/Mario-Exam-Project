@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : Trap
 {
     [Header("Enemy Behaviour")] 
-    public float enemyMovementSpeed = 1.5f;
-    public float maxBoost = 1.2f;
+    public float enemyMovementSpeed = 100f;
+    public float maxBoost = 1.5f;
 
 
     private Rigidbody2D enemyRB;
@@ -55,7 +55,7 @@ public class Enemy : Trap
             stoppingBoost = 1f;
         }
 
-        enemyRB.AddForce(new Vector2(enemyMovementSpeed * direction * stoppingBoost, 0));
+        enemyRB.AddForce(new Vector2(enemyMovementSpeed * direction * stoppingBoost * Time.deltaTime, 0));
     }
 
     private void OnTriggerEnter2D(Collider2D other)

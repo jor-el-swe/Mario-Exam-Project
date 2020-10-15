@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour
     public Animator playerAnimator;
     
     [Header("Game Behaviour")] 
-    public float playerSpeed = 2f;
-    public float jumpStrength = 600f;
+    public float playerSpeed = 10f;
+    public float jumpStrength = 300f;
     public float maxXVelocity = 8f;
     public float maxFallVelocity = -10.5f;
     public float doubleJumpMultiplier = 0.4f;
-    public float wallJumpStrength = 600f;
+    public float wallJumpStrength = 250f;
     
     public bool PlayerHasWon => playerHasWon;
     public bool PlayerHasStarted => playerHasStarted;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private bool playerIsOnGround = false;
     private int noLives = 3;
     private float lastKnownFallVelocity = 0;
+    private PlayerMovements playerMovements = new PlayerMovements();
     
     
     //gameplay logic
@@ -70,11 +71,18 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         lastKnownFallVelocity = _playerRB.velocity.y;
+        
         //needed for OnTriggerStay2D() to work properly, whilst standing still in a trap
         _playerRB.WakeUp();
         
         if (playerHasStarted && !playerhasDied)
         {
+            //check if we have fallen too far beyond ground level
+            if (_playerRB.position.y < -9)
+            {
+                playerhasDied = true;
+                return;
+            }
             PrepareMovePlayer();
         }
         else
@@ -95,24 +103,14 @@ public class PlayerController : MonoBehaviour
     
     private void PrepareMovePlayer()
     {
-            //check if we have fallen too far beyond ground level
-            if (playerHasStarted)
-            {
-                if (_playerRB.position.y < -9)
-                {
-                    playerhasDied = true;
-                    return;
-                }
-            }
-
             if ( (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(_playerRB.velocity.x) < maxXVelocity)
             {
-                _playerRB.AddForce(Vector2.left * (playerSpeed * Time.deltaTime));
+                playerMovements.MoveLeft = true;
                 playerAnimator.enabled = true;
             }
             else if ( (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&  _playerRB.velocity.x < maxXVelocity)
             {
-                _playerRB.AddForce(Vector2.right * playerSpeed);
+                playerMovements.MoveRight = true;
                 playerAnimator.enabled = true;
             }
             else
@@ -120,16 +118,6 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.enabled = false;
             }
 
-            if (Input.GetKey(KeyCode.F12))
-            {
-                ActivateEasterEgg(true);
-            }
-
-            if (Input.GetKey(KeyCode.F11))
-            {
-                ActivateEasterEgg(false);
-            }
-            
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 if (playerIsOnGround || canDoubleJump)
@@ -137,11 +125,11 @@ public class PlayerController : MonoBehaviour
                     if (!playerIsOnGround)
                     {
                         canDoubleJump = false;
-                        _playerRB.AddForce(Vector2.up * (jumpStrength * doubleJumpMultiplier));
+                        playerMovements.DoubleJump = true;
                     }
                     else
                     {
-                        _playerRB.AddForce(Vector2.up * jumpStrength);  
+                        playerMovements.Jump = true;
                     }
                 }
                 else
@@ -155,16 +143,56 @@ public class PlayerController : MonoBehaviour
 
                         if (wall.position.x > _playerRB.position.x)
                         {
-                            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.left * (wallJumpStrength * 0.5f));
+                            playerMovements.WallJumpLeft = true;
                         }
                         else
                         {
-                            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * (wallJumpStrength * 0.5f));
+                            playerMovements.WallJumpRight = true;
                         }
                         
                     }
                 }
             }
+            
+            if (Input.GetKey(KeyCode.F12))
+            {
+                ActivateEasterEgg(true);
+            }
+
+            if (Input.GetKey(KeyCode.F11))
+            {
+                ActivateEasterEgg(false);
+            }
+    }
+
+    private void FixedUpdate()
+    {
+        if(playerMovements.MoveLeft)
+            _playerRB.AddForce(Vector2.left * playerSpeed);
+
+        if (playerMovements.MoveRight)
+            _playerRB.AddForce(Vector2.right * playerSpeed);
+            
+        if(playerMovements.DoubleJump)
+            _playerRB.AddForce(Vector2.up * (jumpStrength * doubleJumpMultiplier));
+        
+        if(playerMovements.Jump)
+            _playerRB.AddForce(Vector2.up * jumpStrength);  
+        
+        if(playerMovements.WallJumpLeft)
+            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.left * (wallJumpStrength * 0.5f));
+        
+        if(playerMovements.WallJumpRight)
+            _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * (wallJumpStrength * 0.5f));
+        
+        
+        //reset all movements
+        playerMovements.Jump = false;
+        playerMovements.MoveLeft = false;
+        playerMovements.MoveRight = false;
+        playerMovements.DoubleJump = false;
+        playerMovements.WallJumpLeft = false;
+        playerMovements.WallJumpRight = false;
     }
 
     private void ActivateEasterEgg(bool toggle)

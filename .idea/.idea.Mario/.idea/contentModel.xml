@@ -10,6 +10,7 @@
           <e p="Enemy.cs" t="Include" />
           <e p="GameController.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="PlayerMovements.cs" t="Include" />
           <e p="Trap.cs" t="Include" />
           <e p="UIController.cs" t="Include" />
         </e>
