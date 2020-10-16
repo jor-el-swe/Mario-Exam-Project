@@ -1640,6 +1640,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1712558667656764696}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1339353169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339353168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45428c768946e4646822685ec70e879f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 3
 --- !u!114 &1339353170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1661,9 +1675,9 @@ MonoBehaviour:
   playerSpeed: 10
   jumpStrength: 300
   maxXVelocity: 8
-  maxFallVelocity: -10.5
-  doubleJumpMultiplier: 0.4
-  wallJumpStrength: 250
+  maxFallVelocity: -20
+  doubleJumpMultiplier: 0.5
+  wallJumpStrength: 300
 --- !u!4 &1339353171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1712558666762581321, guid: 9e0f643b6b81fb04b9cfd9d716b2d9eb,
