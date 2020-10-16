@@ -561,7 +561,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566326115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -589,8 +589,9 @@ MonoBehaviour:
 
     press ''R'' to reset game'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d19e2d351429f5149a1e968908cc9d31, type: 2}
+  m_sharedMaterial: {fileID: 5901687846070868274, guid: d19e2d351429f5149a1e968908cc9d31,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -598,7 +599,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283301684
   m_fontColor: {r: 0.2028302, g: 1, b: 0.30001155, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.9339623, g: 0.19824673, b: 0.19824673, a: 1}
@@ -916,7 +917,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026287932}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -930,16 +931,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Lives: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d19e2d351429f5149a1e968908cc9d31, type: 2}
+  m_sharedMaterial: {fileID: 5901687846070868274, guid: d19e2d351429f5149a1e968908cc9d31,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293439231
-  m_fontColor: {r: 1, g: 0.6839622, b: 0.91131526, a: 1}
-  m_enableVertexGradient: 1
+    rgba: 4280500962
+  m_fontColor: {r: 0.8867924, g: 0.25871894, b: 0.13803846, a: 1}
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.9339623, g: 0.19824673, b: 0.19824673, a: 1}
@@ -1742,7 +1744,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415342573}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1767,8 +1769,9 @@ MonoBehaviour:
 
     press ''P'' to play'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d19e2d351429f5149a1e968908cc9d31, type: 2}
+  m_sharedMaterial: {fileID: 5901687846070868274, guid: d19e2d351429f5149a1e968908cc9d31,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1776,7 +1779,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283301684
   m_fontColor: {r: 0.2028302, g: 1, b: 0.30001155, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.9339623, g: 0.19824673, b: 0.19824673, a: 1}
@@ -2162,7 +2165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703666207}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2176,8 +2179,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Time left:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d19e2d351429f5149a1e968908cc9d31, type: 2}
+  m_sharedMaterial: {fileID: 5901687846070868274, guid: d19e2d351429f5149a1e968908cc9d31,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2185,7 +2189,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283301684
   m_fontColor: {r: 0.2028302, g: 1, b: 0.30001155, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.9339623, g: 0.19824673, b: 0.19824673, a: 1}
@@ -2328,7 +2332,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016369726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2356,8 +2360,9 @@ MonoBehaviour:
 
     press ''R'' to reset game'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d19e2d351429f5149a1e968908cc9d31, type: 2}
+  m_sharedMaterial: {fileID: 5901687846070868274, guid: d19e2d351429f5149a1e968908cc9d31,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2365,7 +2370,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283301684
   m_fontColor: {r: 0.2028302, g: 1, b: 0.30001155, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.9339623, g: 0.19824673, b: 0.19824673, a: 1}
