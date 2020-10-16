@@ -10,12 +10,14 @@ public class Enemy : Trap
 
 
     private Rigidbody2D enemyRB;
+    private SpriteRenderer enemySpriteRenderer;
     private Transform enemyPlatform;
     private float direction = 1;
 
     private void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
+        enemySpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -55,7 +57,11 @@ public class Enemy : Trap
             stoppingBoost = 1f;
         }
 
+        //move enemy
         enemyRB.AddForce(new Vector2(enemyMovementSpeed * direction * stoppingBoost * Time.deltaTime, 0));
+        
+        //flip sprite depending on move direction
+        enemySpriteRenderer.flipX = enemyRB.velocity.x < 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

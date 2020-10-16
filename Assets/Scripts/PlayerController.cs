@@ -154,12 +154,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
             
-            if (Input.GetKey(KeyCode.F12))
+            if (Input.GetKey(KeyCode.I))
             {
                 ActivateEasterEgg(true);
             }
 
-            if (Input.GetKey(KeyCode.F11))
+            if (Input.GetKey(KeyCode.U))
             {
                 ActivateEasterEgg(false);
             }
@@ -197,7 +197,6 @@ public class PlayerController : MonoBehaviour
 
     private void ActivateEasterEgg(bool toggle)
     {
-       
         MeshRenderer [] playerMeshes = _playerRB.gameObject.GetComponentsInChildren<MeshRenderer>();
         foreach (var mesh in playerMeshes)
         {
