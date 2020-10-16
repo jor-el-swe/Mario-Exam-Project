@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     private int noLives = 3;
     private float lastKnownFallVelocity = 0;
     private PlayerMovements playerMovements = new PlayerMovements();
-    
+    private bool playerFacingLeft;
+  
     
     //gameplay logic
     private bool playerHasWon;
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         _spawnPosition = transform.position;
         _playerRB = GetComponent<Rigidbody2D>();
+        
         uiController.SetLifeText(noLives);
 
         playerAnimator.enabled = false;
@@ -106,16 +108,10 @@ public class PlayerController : MonoBehaviour
             if ( (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(_playerRB.velocity.x) < maxXVelocity)
             {
                 playerMovements.MoveLeft = true;
-                playerAnimator.enabled = true;
             }
             else if ( (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&  _playerRB.velocity.x < maxXVelocity)
             {
                 playerMovements.MoveRight = true;
-                playerAnimator.enabled = true;
-            }
-            else
-            {
-                playerAnimator.enabled = false;
             }
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
@@ -184,8 +180,23 @@ public class PlayerController : MonoBehaviour
         
         if(playerMovements.WallJumpRight)
             _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * (wallJumpStrength * 0.5f));
+
+        //only animate if player is moving
+        playerAnimator.enabled = _playerRB.velocity.x != 0;
         
-        
+        //flip animation in x depending on movement direction
+        if (_playerRB.velocity.x < 0f)
+        {
+            FlipPLayer();
+            playerFacingLeft = true;
+        }
+
+        if (playerFacingLeft && _playerRB.velocity.x > 0f)
+        {
+            playerFacingLeft = false;
+            FlipPLayer();
+        }
+
         //reset all movements
         playerMovements.Jump = false;
         playerMovements.MoveLeft = false;
@@ -193,6 +204,17 @@ public class PlayerController : MonoBehaviour
         playerMovements.DoubleJump = false;
         playerMovements.WallJumpLeft = false;
         playerMovements.WallJumpRight = false;
+    }
+
+    private void FlipPLayer()
+    {
+        if (!playerFacingLeft)
+        {
+            var transform1 = transform;
+            Vector3 theScale = transform1.localScale;
+            theScale.x *= -1;
+            transform1.localScale = theScale; 
+        }
     }
 
     private void ActivateEasterEgg(bool toggle)

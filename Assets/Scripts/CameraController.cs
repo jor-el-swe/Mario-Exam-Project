@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
     public Transform playerTransform;
 
     [Header("Camera Settings")] 
-    public float cameraYOffset = 4f;
+    public float cameraYOffset = 2f;
   
     // Update is called once per frame
     void FixedUpdate()
@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
             newPosition.y = Mathf.Lerp(transform.position.y, playerTransform.position.y, Time.deltaTime);
            
             //cannot see below ground area
-            newPosition.y = Mathf.Clamp(newPosition.y ,0 , newPosition.y );
+            newPosition.y = Mathf.Clamp(newPosition.y ,cameraYOffset , newPosition.y );
             
             transform.position = newPosition;
         }
