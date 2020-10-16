@@ -12,12 +12,15 @@ public class Enemy : Trap
     private Rigidbody2D enemyRB;
     private SpriteRenderer enemySpriteRenderer;
     private Transform enemyPlatform;
+    private PlayerController playerController;
+
     private float direction = 1;
 
     private void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
         enemySpriteRenderer = GetComponent<SpriteRenderer>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -27,8 +30,12 @@ public class Enemy : Trap
     }
 
     private void FixedUpdate()
-    { 
-        AIMovementPattern();
+    {
+        if (!playerController.PlayerHasWon)
+        {
+            AIMovementPattern();
+        }
+
     }
 
     private void AIMovementPattern()

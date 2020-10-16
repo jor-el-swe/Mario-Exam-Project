@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5837890682375948608}
   - component: {fileID: 3626605215923738426}
   - component: {fileID: 4534292097836870171}
-  - component: {fileID: 2114847611041480793}
   - component: {fileID: 5361063106434624489}
   - component: {fileID: 3127210855762469826}
+  - component: {fileID: 2114847611041480793}
   m_Layer: 0
   m_Name: enemy
   m_TagString: trap
@@ -111,20 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6609974, y: 2.575242}
   m_EdgeRadius: 0
---- !u!114 &2114847611041480793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7043485454768814178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 629e6a25565d1a546b34b62ba2e4cb9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyMovementSpeed: 100
-  maxBoost: 1.5
 --- !u!50 &5361063106434624489
 Rigidbody2D:
   serializedVersion: 4
@@ -172,3 +158,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15233612, y: 0.018242955}
   m_EdgeRadius: 0
+--- !u!114 &2114847611041480793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043485454768814178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629e6a25565d1a546b34b62ba2e4cb9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerController: {fileID: 0}
+  enemyMovementSpeed: 100
+  maxBoost: 1.5

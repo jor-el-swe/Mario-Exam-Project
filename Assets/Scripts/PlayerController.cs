@@ -179,8 +179,9 @@ public class PlayerController : MonoBehaviour
         if(playerMovements.WallJumpRight)
             _playerRB.AddForce(Vector2.up * wallJumpStrength + Vector2.right * (wallJumpStrength * 0.5f));
 
-        //only animate if player is moving
-        playerAnimator.enabled = _playerRB.velocity.x != 0;
+        //only animate if player is moving, and not is dead or has won
+        if (!(playerhasDied || playerHasWon))
+            playerAnimator.enabled = _playerRB.velocity.x != 0;
         
         //flip animation in x depending on movement direction
         if (_playerRB.velocity.x < 0f)
@@ -206,6 +207,8 @@ public class PlayerController : MonoBehaviour
 
     private void FlipPLayer()
     {
+        if (playerhasDied || playerHasWon) return;
+        
         if (!playerFacingLeft)
         {
             var transform1 = transform;
