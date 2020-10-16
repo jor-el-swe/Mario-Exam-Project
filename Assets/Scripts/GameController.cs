@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
     [Header("References")]
     public UIController uiController;
     public PlayerController playerController;
+    public Enemy[] enemies;
     public AudioHandler audioHandler;
     
     public int maxGameTime = 60;
@@ -82,6 +83,10 @@ public class GameController : MonoBehaviour
                     uiController.ShowTitleScreen();
                     playerController.ResetGame();
                     audioHandler.FadeInMusic(currentLevel);
+                    foreach (var enemy in enemies)
+                    {
+                        enemy.ResetEnemy();
+                    }
 
                 }
                 break;
@@ -93,6 +98,10 @@ public class GameController : MonoBehaviour
                     uiController.ShowTitleScreen();
                     playerController.ResetGame();
                     audioHandler.FadeInMusic(currentLevel);
+                    foreach (var enemy in enemies)
+                    {
+                        enemy.ResetEnemy();
+                    }
                 }
                 break;
         }

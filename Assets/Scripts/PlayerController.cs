@@ -186,16 +186,17 @@ public class PlayerController : MonoBehaviour
         //flip animation in x depending on movement direction
         if (_playerRB.velocity.x < 0f)
         {
-            FlipPLayer();
             playerFacingLeft = true;
+            FlipPLayer();
         }
 
-        if (playerFacingLeft && _playerRB.velocity.x > 0f)
+        if (_playerRB.velocity.x > 0f)
         {
             playerFacingLeft = false;
             FlipPLayer();
         }
-
+        
+        
         //reset all movements
         playerMovements.Jump = false;
         playerMovements.MoveLeft = false;
@@ -209,11 +210,18 @@ public class PlayerController : MonoBehaviour
     {
         if (playerhasDied || playerHasWon) return;
         
-        if (!playerFacingLeft)
+        if (playerFacingLeft)
         {
             var transform1 = transform;
             Vector3 theScale = transform1.localScale;
-            theScale.x *= -1;
+            theScale.x = -1;
+            transform1.localScale = theScale; 
+        }
+        else
+        {
+            var transform1 = transform;
+            Vector3 theScale = transform1.localScale;
+            theScale.x = 1;
             transform1.localScale = theScale; 
         }
     }

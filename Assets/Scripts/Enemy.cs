@@ -13,14 +13,22 @@ public class Enemy : Trap
     private SpriteRenderer enemySpriteRenderer;
     private Transform enemyPlatform;
     private PlayerController playerController;
-
+    private Vector3 spawnPosition;
+    
     private float direction = 1;
+
+    public void ResetEnemy()
+    {
+        enemyRB.transform.position = spawnPosition;
+        enemyRB.velocity = Vector2.zero;
+    }
 
     private void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
         enemySpriteRenderer = GetComponent<SpriteRenderer>();
         playerController = FindObjectOfType<PlayerController>();
+        spawnPosition = enemyRB.transform.position;
     }
 
     // Update is called once per frame
