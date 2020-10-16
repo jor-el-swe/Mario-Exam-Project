@@ -20,7 +20,6 @@ public class Enemy : Trap
     public void ResetEnemy()
     {
         enemyRB.transform.position = spawnPosition;
-        enemyRB.velocity = Vector2.zero;
     }
 
     private void Start()
