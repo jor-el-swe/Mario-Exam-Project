@@ -9,3 +9,5 @@ Flag, traps and enemies created in Piskel by Joel Ring :)
 Music by Joel Ring.
 Player dude model by Joel Ring.
 Easter egg assets by Joel Ring.
+
+Graphics advisor: Karolina Krachbumm
